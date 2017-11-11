@@ -1,5 +1,2 @@
 class Sale < ApplicationRecord
-
-  
-
 end
