@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="form-wrapper">
+  <%= form_tag("/upload", method: "post",  multipart: true, class: 'form-inline') do %>
+    <%= file_field_tag 'file', required: true, class: "form-control" %>
+    <%= submit_tag("upload", class: "btn btn-primary")%>
+  <% end %>
+  </div>
+
+  <h4>IMPORTED DATA</h4>
+  <table class="table table-striped">
+    <thead>
+      <th>Purchaser Name</th>
+      <th>Item Description</th>
+      <th>Item Price</th>
+      <th>Purchase Count</th>
+      <th>Merchant Adress</th>
+      <th>Merchant Name</th>
+    </thead>
+    <% @sales.each do |sale| %>
+    <tbody>
+      <tr>
+        <td><%= sale.purchaser_name %></td>
+        <td><%= sale.item_description %></td>
+        <td>R$ <%= "#{sale.item_price}0" %></td>
+        <td><%= sale.purchase_count %> un</td>
+        <td><%= sale.merchant_address %></td>
+        <td><%= sale.merchant_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <h3>Gross Revenue: R$ <%= gr(@sales) %> </h3>
+</div>
